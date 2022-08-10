@@ -25,7 +25,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
-        FullRepositoryId = "Joonzales/test"
+        FullRepositoryId = "kosaf1996/Django_Instagram"
         BranchName       = "main"
       }
     }
@@ -79,7 +79,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
 ############################################################
 #####                     Tokyo                         ####
 ############################################################
-resource "aws_codepipeline" "seoul-codepipeline" {
+resource "aws_codepipeline" "tokyo-codepipeline" {
   # Codepipeline 생성 Step 1: 파이프라인 설정
   provider = aws.tokyo
   name     = "django-pipeline" #파이프 라인 네임
@@ -104,7 +104,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
-        FullRepositoryId = "Joonzales/test"
+        FullRepositoryId = "kosaf1996/Django_Instagram"
         BranchName       = "main"
       }
     }
