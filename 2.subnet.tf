@@ -93,3 +93,14 @@ resource "aws_subnet" "tokyo-dba" {
     "Name" = "tokyo-dba"
   }
 }
+
+resource "aws_subnet" "tokyo-dbc" {
+  provider                = aws.tokyo
+  vpc_id                  = aws_vpc.tokyo-vpc.id
+  cidr_block              = "${var.tokyo-cidr-block["dbc"]}"
+  availability_zone       = "${var.tokyo-az["azc"]}"
+  map_public_ip_on_launch = false
+  tags = {
+    "Name" = "tokyo-dbc"
+  }
+}

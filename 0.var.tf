@@ -24,6 +24,10 @@ variable "seoul-az" {
     "azd" = "ap-northeast-2d"
   }
 }
+variable "seoul-resion" {
+  type    = string
+  default = "ap-northeast-2"
+}
 
 ############################################################
 #####                     Tokyo                         ####
@@ -37,7 +41,8 @@ variable "tokyo-cidr-block" {
     puba = "200.0.0.0/24"
     ecsa = "200.0.1.0/24"
     ecsc = "200.0.2.0/24"
-    dba = "200.0.3.0/24"
+    dba  = "200.0.3.0/24"
+    dbc  = "200.0.4.0/24"
   }
 }
 
@@ -51,7 +56,10 @@ variable "tokyo-az" {
     "azd" = "ap-northeast-1d"
   }
 }
-
+variable "tokyo-resion" {
+  type    = string
+  default = "ap-northeast-1"
+}
 ############################################################
 #####                     Global                        ####
 ############################################################
@@ -60,7 +68,6 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-
 
 ###Security Group Port
 variable "all-cidr" {
@@ -80,17 +87,17 @@ variable "ssh-port" {
   default = 22
 }
 
-
+###VPC-Perring
 ###AMI
 variable "seoul-ami" {
-  type = string
+  type    = string
   default = "ami-01711d925a1e4cc3a"
 }
 
 variable "tokyo-ami" {
-  type = string
+  type    = string
   default = "ami-0ecb2a61303230c9d"
-  
+
 }
 ###CICD
 variable "django_app" {
@@ -114,7 +121,33 @@ locals {
   account_id = data.aws_caller_identity.current.account_id
 }
 
-
+###ECS-Task-Def
+variable "ecs-family" {
+  type    = string
+  default = "django-app-def"
+}
+variable "ecs-cpu" {
+  default = 512
+}
+variable "ecs-memory" {
+  default = 1024
+}
+variable "container-hostport" {
+  default = 80
+}
+variable "container-port" {
+  default = 80
+}
+variable "container-protocol" {
+  type    = string
+  default = "tcp"
+}
+variable "container-cpu" {
+  default = 256
+}
+variable "container-memory" {
+  default = 512
+}
 ###ALB Health Check
 variable "health-check-path" {
   type    = string
@@ -127,11 +160,11 @@ variable "health-interval-check" {
   default = 5
 }
 variable "health-matcher" {
-  type = string
+  type    = string
   default = "200"
 }
 variable "health-protocol" {
-  type = string
+  type    = string
   default = "HTTP"
 }
 variable "health-timeout" {
@@ -141,37 +174,104 @@ variable "health-unhealthy" {
   default = 3
 }
 variable "health-port" {
-  type = string
+  type    = string
   default = "traffic-port"
 }
 
 ###ALB Listner 
 variable "lis-protocol" {
-  type = string
+  type    = string
   default = "HTTP"
 }
 variable "lis-action-type" {
-  type = string
+  type    = string
   default = "forward"
 }
 
 ###EFS Policy
 variable "efs-posix" {
-   type = string
-   default = "1100"
+  type    = string
+  default = "1100"
 }
 variable "efs-posix-premissions" {
-   type = string
-   default = "0755"
+  type    = string
+  default = "0755"
 }
-
+variable "efs-root-path" {
+  type    = string
+  default = "/django/Django_Instagram/media"  
+}
 
 ####Key-pare
 variable "key-name" {
-  type = string
+  type    = string
   default = "django-app-key"
 }
 variable "key-path" {
-  type = string
+  type    = string
   default = "../../../../Users/GM/.ssh/gmgu.pub"
+}
+
+
+###RDS
+variable "db-instance" {
+  type = string
+  default = "db.t3.micro"
+}
+variable "db-user" {
+  type = string
+  default = "root"
+}
+variable "db-password" {
+  type = string
+  default = "It12345!"
+}
+variable "db-engine" {
+  type = string
+  default = "postgres"
+}
+variable "db-engine-version" {
+  type = string
+  default = "13.3"
+}
+variable "db-storagy" {
+  type = string
+  default = "gp2"
+}
+variable "db-name" {
+  type = string
+  default = "seoul"
+}
+variable "db-storage-size" {
+  default = 10
+}
+
+###Route53
+variable "route53-port" {
+  type = string
+  default = "80"
+}
+variable "route53-type" {
+  type = string
+  default = "HTTP"
+}
+variable "route53-resource-path" {
+  type = string
+  default = "/"
+}
+variable "route53-failure-threshold" {
+  type = string
+  default = "3"
+}
+variable "route53-request-interval" {
+  type = string
+  default = "10"
+}
+variable "route53-dns" {
+  type = string
+  default = "kgitbank.xyz"
+}
+variable "route53-record" {
+  type = string
+  default = "A"
 }

@@ -2,9 +2,12 @@
 #####                     Seoul                         ####
 ############################################################
 provider "aws" {
-  region = "ap-northeast-2"
+  region = "${var.seoul-resion}"
 }
-
+provider "aws" {
+  alias = "seoul"
+  region = "${var.seoul-resion}"
+}
 
 resource "aws_key_pair" "seoul-gmgu-key" {
     key_name = "${var.key-name}"
@@ -16,7 +19,7 @@ resource "aws_key_pair" "seoul-gmgu-key" {
 ############################################################
 provider "aws" {
   alias = "tokyo"
-  region = "ap-northeast-1"
+  region = "${var.tokyo-resion}"
 }
 
 resource "aws_key_pair" "tokyo-gmgu-key" {

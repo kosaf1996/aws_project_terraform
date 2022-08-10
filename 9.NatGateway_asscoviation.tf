@@ -24,9 +24,15 @@ resource "aws_route_table_association" "seoul-natass-dbc" {
 ############################################################
 #####                     Tokyo                         ####
 ############################################################
-resource "aws_route_table_association" "tokyo-db" {
+resource "aws_route_table_association" "tokyo-dba" {
   provider       = aws.tokyo
   subnet_id      = aws_subnet.tokyo-dba.id
+  route_table_id = aws_route_table.tokyo-natrt.id
+}
+
+resource "aws_route_table_association" "tokyo-dbc" {
+  provider       = aws.tokyo
+  subnet_id      = aws_subnet.tokyo-dbc.id
   route_table_id = aws_route_table.tokyo-natrt.id
 }
 

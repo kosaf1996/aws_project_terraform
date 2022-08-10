@@ -1,22 +1,24 @@
-
 ############################################################
 #####                     Seoul                         ####
 ############################################################
-resource "aws_ecr_repository" "seoul-ecr-repo" {
-  name         = var.django_ecr
-  force_delete = true
-  tags = {
-    "Name" = "${var.django_ecr}"
+resource "aws_ecs_cluster" "seoul-ecs-cluster" {
+  name = "django-app-cluster"
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
   }
 }
+
 ############################################################
 #####                     Tokyo                         ####
 ############################################################
-resource "aws_ecr_repository" "tokyo-ecr-repo" {
-  provider     = aws.tokyo
-  name         = var.django_ecr
-  force_delete = true
-  tags = {
-    "Name" = "${var.django_ecr}"
+resource "aws_ecs_cluster" "tokyo-ecs-cluster" {
+  provider = aws.tokyo
+  name     = "django-app-cluster"
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
   }
 }
