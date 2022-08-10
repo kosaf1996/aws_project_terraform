@@ -104,7 +104,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
-        FullRepositoryId = "kosaf1996/Django_Instagram"
+        FullRepositoryId = "kosaf1996/Django_Instagram_Tokyo"
         BranchName       = "main"
       }
     }
