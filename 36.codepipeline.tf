@@ -83,7 +83,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
   # Codepipeline 생성 Step 1: 파이프라인 설정
   provider = aws.tokyo
   name     = "django-pipeline" #파이프 라인 네임
-  role_arn = aws_iam_role.codepipeline_role.arn #CodePipeLine Role
+  role_arn = aws_iam_role.codepipeline-role.arn #CodePipeLine Role
 
   # Codepipeline 생성 Step 1: 고급 설정 - 아티팩트 스토어
   artifact_store {
@@ -104,7 +104,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
-        FullRepositoryId = "kosaf1996/Django_Instagram"
+        FullRepositoryId = "kosaf1996/Django_Instagram_Tokyo"
         BranchName       = "main"
       }
     }

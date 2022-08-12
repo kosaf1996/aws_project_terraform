@@ -41,7 +41,30 @@ resource "aws_iam_policy" "Seoul-AccessingECRRepositoryPolicy" {
           "ecr:InitiateLayerUpload",
           "ecr:UploadLayerPart",
           "ecr:CompleteLayerUpload",
-          "ecr:PutImage"
+          "ecr:PutImage",
+          "s3:*",
+          "s3-object-lambda:*",
+          "cloudwatch:DescribeAlarmsForMetric",
+          "cloudwatch:GetMetricData",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeNetworkInterfaceAttribute",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcAttribute",
+          "ec2:DescribeVpcs",
+          "elasticfilesystem:DescribeAccountPreferences",
+          "elasticfilesystem:DescribeBackupPolicy",
+          "elasticfilesystem:DescribeFileSystems",
+          "elasticfilesystem:DescribeFileSystemPolicy",
+          "elasticfilesystem:DescribeLifecycleConfiguration",
+          "elasticfilesystem:DescribeMountTargets",
+          "elasticfilesystem:DescribeMountTargetSecurityGroups",
+          "elasticfilesystem:DescribeTags",
+          "elasticfilesystem:DescribeAccessPoints",
+          "elasticfilesystem:DescribeReplicationConfigurations",
+          "elasticfilesystem:ListTagsForResource",
+          "kms:ListAliases"
         ],
         "Resource" : [
           "*",
@@ -66,7 +89,7 @@ resource "aws_iam_policy" "Seoul-AccessingECRRepositoryPolicy" {
 }
 
 ############################################################
-#####                     Seoul                         ####
+#####                     Tokyo                         ####
 ############################################################
 # Codebuile가 ECR에 접근하기 위한 정책
 resource "aws_iam_policy" "Tokyo-AccessingECRRepositoryPolicy" {
@@ -195,32 +218,6 @@ resource "aws_iam_policy" "CodedeployRoleforECR" {
 data "aws_iam_policy" "AmazonECSTaskExecutionRolePolicy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
-
-
-/*
-resource "aws_iam_policy" "ecsTaskPolicy" {
-  name = "ecsTaskPolicy"
-
-  policy = jsonencode ({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Effect" : "Allow",
-        "Action" : [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-        ],
-        "Resource" : "*"
-      }
-    ]
-  })
-}
-*/
-
 
 # Codepipeline Policy
 resource "aws_iam_policy" "codepipeline_policy" {

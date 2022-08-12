@@ -275,3 +275,22 @@ variable "route53-record" {
   type = string
   default = "A"
 }
+
+
+###S3 
+variable "tokyo-s3" {
+  type = string
+  default = "tokyo1-django-codepipeline-bucket"
+}
+variable "seoul-s3" {
+  type = string
+  default = "seoul1-django-codepipeline-bucket"
+}
+
+###AutoScaling
+variable "max" {
+  default = 10
+}
+variable "min" {
+  default = 2
+}
