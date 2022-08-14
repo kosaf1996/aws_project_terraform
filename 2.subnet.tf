@@ -10,7 +10,16 @@ resource "aws_subnet" "seoul-puba" {
     "Name" = "seoul-puba"
   }
 }
-
+################################################
+resource "aws_subnet" "seoul-pubc" {
+  vpc_id            = aws_vpc.seoul-vpc.id
+  cidr_block        =  "${var.seoul-cidr-block["pubc"]}"
+  availability_zone =  "${var.seoul-az["azc"]}"
+  tags = {
+    "Name" = "seoul-pubc"
+  }
+}
+################################################
 #Private Zone 
 resource "aws_subnet" "seoul-ecsa" {
   vpc_id            = aws_vpc.seoul-vpc.id
@@ -59,7 +68,18 @@ resource "aws_subnet" "tokyo-puba" {
     "Name" = "tokyo-puba"
   }
 }
-
+################################################
+resource "aws_subnet" "tokyo-pubc" {
+  provider                = aws.tokyo
+  vpc_id                  = aws_vpc.tokyo-vpc.id
+  cidr_block              = "${var.tokyo-cidr-block["pubc"]}"
+  availability_zone       = "${var.tokyo-az["azc"]}"
+  map_public_ip_on_launch = true
+  tags = {
+    "Name" = "tokyo-puba"
+  }
+}
+################################################
 #Private
 resource "aws_subnet" "tokyo-ecsa" {
   provider                = aws.tokyo

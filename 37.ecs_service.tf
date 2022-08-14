@@ -12,7 +12,7 @@ resource "aws_ecs_service" "seoul-ecs-service" {                                
   network_configuration {                                                   #네트워크 구성 
     subnets          = [aws_subnet.seoul-ecsa.id, aws_subnet.seoul-ecsc.id] #서브넷 
     security_groups  = [aws_security_group.seoul-sg.id]                     #보안 그룹
-    assign_public_ip = true                                                 #공용 IP 할당 
+    assign_public_ip = false                                                 #공용 IP 할당 
   }
 
   load_balancer {                                                    #로드 밸런서
@@ -40,7 +40,7 @@ resource "aws_ecs_service" "tokyo-ecs-service" {                                
   network_configuration {                                                   #네트워크 구성 
     subnets          = [aws_subnet.tokyo-ecsa.id, aws_subnet.tokyo-ecsc.id] #서브넷 
     security_groups  = [aws_security_group.tokyo-sg.id]                     #보안 그룹
-    assign_public_ip = true                                                 #공용 IP 할당 
+    assign_public_ip = false                                                 #공용 IP 할당 
   }
 
   load_balancer {                                                    #로드 밸런서

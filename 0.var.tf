@@ -8,6 +8,7 @@ variable "seoul-cidr-block" {
   default = {
     vpc  = "100.0.0.0/16"
     puba = "100.0.0.0/24"
+    pubc = "100.0.5.0/24"
     ecsa = "100.0.1.0/24"
     ecsc = "100.0.2.0/24"
     dba  = "100.0.3.0/24"
@@ -39,6 +40,7 @@ variable "tokyo-cidr-block" {
   default = {
     vpc  = "200.0.0.0/16"
     puba = "200.0.0.0/24"
+    pubc = "200.0.5.0/24"
     ecsa = "200.0.1.0/24"
     ecsc = "200.0.2.0/24"
     dba  = "200.0.3.0/24"
