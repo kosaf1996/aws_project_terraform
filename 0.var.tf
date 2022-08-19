@@ -248,6 +248,7 @@ variable "db-storage-size" {
   default = 10
 }
 
+
 ###Route53
 variable "route53-port" {
   type = string
@@ -271,7 +272,7 @@ variable "route53-request-interval" {
 }
 variable "route53-dns" {
   type = string
-  default = "kgitbank.xyz"
+  default = "3-team.xyz"
 }
 variable "route53-record" {
   type = string

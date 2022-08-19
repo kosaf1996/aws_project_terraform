@@ -76,7 +76,7 @@ resource "aws_subnet" "tokyo-pubc" {
   availability_zone       = "${var.tokyo-az["azc"]}"
   map_public_ip_on_launch = true
   tags = {
-    "Name" = "tokyo-puba"
+    "Name" = "tokyo-pubc"
   }
 }
 ################################################
