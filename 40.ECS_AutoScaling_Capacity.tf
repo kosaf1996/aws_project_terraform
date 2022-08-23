@@ -8,8 +8,8 @@ resource "aws_ecs_cluster_capacity_providers" "seoul-ecs-cluster-capa" {
   
   default_capacity_provider_strategy {
     capacity_provider = "FARGATE"
-    base              = 2
-    weight            = 100
+    base              = var.capacity_base
+    weight            = var.capacity_weight
   }
 }
 ############################################################
@@ -23,7 +23,7 @@ resource "aws_ecs_cluster_capacity_providers" "tokyo-ecs-cluster-capa" {
 
   default_capacity_provider_strategy {
     capacity_provider = "FARGATE"
-    base              = 2
-    weight            = 100
+    base              = var.capacity_base
+    weight            = var.capacity_base
   }
 }

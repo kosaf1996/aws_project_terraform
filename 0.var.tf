@@ -116,6 +116,9 @@ variable "green-port" {
 variable "blue-port" {
   default = 80
 }
+variable "cicd-version" {
+  default = 1 
+}
 
 data "aws_caller_identity" "current" {}
 
@@ -150,6 +153,13 @@ variable "container-cpu" {
 variable "container-memory" {
   default = 512
 }
+variable "ecs-health-check" {
+  default = 180
+}
+variable "ecs-desired-count" {
+  default = 2
+}
+
 ###ALB Health Check
 variable "health-check-path" {
   type    = string
@@ -296,4 +306,13 @@ variable "max" {
 }
 variable "min" {
   default = 2
+}
+variable "threshold" {
+  default = 30
+}
+variable "capacity_base" {
+  default = 2
+}
+variable "capacity_weight" {
+  default = 100
 }

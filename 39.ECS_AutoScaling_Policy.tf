@@ -13,7 +13,7 @@ resource "aws_appautoscaling_policy" "seoul-ecs-policy-cpu" {
     predefined_metric_specification {
       predefined_metric_type = "ECSServiceAverageCPUUtilization"
     }
-    target_value = 30
+    target_value = var.threshold
   }
   depends_on = [aws_appautoscaling_target.seoul-ecs-target]
 }
@@ -48,7 +48,7 @@ resource "aws_appautoscaling_policy" "tokyo-ecs-policy" {
     predefined_metric_specification {
       predefined_metric_type = "ECSServiceAverageCPUUtilization"
     }
-    target_value = 30
+    target_value = var.threshold
   }
   depends_on = [aws_appautoscaling_target.tokyo-ecs-target]
 

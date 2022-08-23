@@ -21,7 +21,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
       category         = "Source"
       owner            = "AWS"
       provider         = "CodeStarSourceConnection"
-      version          = 1
+      version          = var.cicd-version
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
@@ -40,7 +40,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
-      version          = 1
+      version          = var.cicd-version
       input_artifacts  = ["SourceArtifact"]
       output_artifacts = ["BuildArtifact"]
       namespace        = "BuildVariables"
@@ -59,7 +59,7 @@ resource "aws_codepipeline" "seoul-codepipeline" {
       category        = "Deploy"
       owner           = "AWS"
       provider        = "CodeDeployToECS"
-      version         = 1
+      version         = var.cicd-version
       input_artifacts = ["BuildArtifact", "SourceArtifact"]
       configuration = {
         ApplicationName                = aws_codedeploy_app.seoul-codedeploy.name
@@ -100,7 +100,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
       category         = "Source"
       owner            = "AWS"
       provider         = "CodeStarSourceConnection"
-      version          = 1
+      version          = var.cicd-version
       output_artifacts = ["SourceArtifact"]
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.github-connection.arn
@@ -119,7 +119,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
-      version          = 1
+      version          = var.cicd-version
       input_artifacts  = ["SourceArtifact"]
       output_artifacts = ["BuildArtifact"]
       namespace        = "BuildVariables"
@@ -138,7 +138,7 @@ resource "aws_codepipeline" "tokyo-codepipeline" {
       category        = "Deploy"
       owner           = "AWS"
       provider        = "CodeDeployToECS"
-      version         = 1
+      version         = var.cicd-version
       input_artifacts = ["BuildArtifact", "SourceArtifact"]
       configuration = {
         ApplicationName                = aws_codedeploy_app.tokyo-codedeploy.name
